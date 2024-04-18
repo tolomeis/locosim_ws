@@ -11,13 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Checkout (GitHub)
+      uses: actions/checkout@v3
 
-    - name: Setup VS Code Dev Container
-      uses: microsoft/vscode-dev-containers@v1
+    - name: Build and run dev container task
+      uses: devcontainers/ci@v0.3
       with:
-        runArgs: --privileged  
-
-    - name: Run build.sh
-      run: ./build.sh
+        runCmd: ./build.sh
