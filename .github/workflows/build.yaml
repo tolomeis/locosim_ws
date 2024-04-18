@@ -1,0 +1,23 @@
+name: Build Image and workspace
+
+on:
+  push:
+    branches: [ dev-ci ]
+  pull_request:
+    branches: [ dev-ci ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup VS Code Dev Container
+      uses: microsoft/vscode-dev-containers@v1
+      with:
+        runArgs: --privileged  
+
+    - name: Run build.sh
+      run: ./build.sh
